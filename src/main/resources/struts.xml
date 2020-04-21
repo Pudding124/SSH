@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- 根據所載入的 struts 版本 -->
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
+        "http://struts.apache.org/dtds/struts-2.5.dtd">
+
+<struts>
+    <constant name="struts.devMode" value="true" />
+
+    <!-- namespace：/ = localhost:8080/ -->
+    <!-- namespace：/user = localhost:8080/user/ -->
+    <package name="main" namespace="/" extends="struts-default">
+
+        <!-- name="*"，所有未配置的頁面路徑，皆會跳轉至 error.jsp -->
+        <action name="*">
+            <!--成功則跳轉到index.jsp頁面，否則跳轉到404.jsp頁面，type：是否要轉發，預設為轉發-->
+            <result name="success">/WEB-INF/error.jsp</result>
+        </action>
+
+        <!--name：訪問頁面的名稱，class：class path and class name -->
+        <action name="carSaveAction" class="action.CarSaveAction" method="execute">
+            <!--成功則跳轉到 index.jsp，否則跳轉到 register.jsp -->
+            <result name="success">/WEB-INF/index.jsp</result>
+            <result name="error">/WEB-INF/register.jsp</result>
+        </action>
+
+        <!--name：訪問頁面的名稱，class：class path and class name -->
+        <action name="carAction" class="action.CarAction" method="execute">
+            <!--成功則跳轉到 index.jsp，否則跳轉到 index.jsp，無論成功與否，皆留在原介面，觀看查詢結果-->
+            <result name="success">/WEB-INF/index.jsp</result>
+            <result name="error">/WEB-INF/index.jsp</result>
+        </action>
+
+    </package>
+</struts>
